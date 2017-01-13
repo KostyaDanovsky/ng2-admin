@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import * as _ from 'lodash';
 
-import { ConfigProvider } from '../../../app.config';
+import { ConfigProvider } from '../../app.config';
 
 @Injectable()
 export class LanguageService {

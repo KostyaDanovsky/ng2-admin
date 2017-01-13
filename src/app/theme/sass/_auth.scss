@@ -1,7 +1,5 @@
 @import 'conf/conf';
-
-$text-color: #ffffff;
-
+@import 'buttons';
 
 .auth-main {
   display: flex;
@@ -12,15 +10,19 @@ $text-color: #ffffff;
 }
 
 .auth-block {
-  width: 540px;
+  @include scrollbars(.4em, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.7));
+  color: $content-text;
+  background-color: $bootstrap-panel-bg;
+  border: 0;
+  border-radius: $bootstrap-panel-radius;
+  position: relative;
+  box-shadow: $bootstrap-panel-shadow;
+  width: 550px;
   margin: 0 auto;
-  border-radius: 5px;
-  @include bg-translucent-dark(0.55);
-  color: #fff;
   padding: 32px;
   h1 {
     font-weight: $font-light;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     text-align: center;
   }
   p {
@@ -36,26 +38,29 @@ $text-color: #ffffff;
     }
   }
 
-  .control-label {
-    padding-top: 11px;
-    color: $text-color;
-  }
-
   .form-group {
     margin-bottom: 12px;
   }
-}
 
-.auth-input {
-  width: 300px;
-  margin-bottom: 24px;
-  input {
-    display: block;
+  .form-horizontal .form-control {
     width: 100%;
-    border: none;
-    font-size: 16px;
-    padding: 4px 10px;
-    outline: none;
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 5px 0 15px;
+    color: $danger-bg;
+  }
+
+  .control-label {
+    padding: 0 8px;
+  }
+
+  .message-container {
+    display: block;
+    &.hidden {
+      display: none;
+    }
   }
 }
 
@@ -66,13 +71,14 @@ a.forgot-pass {
   float: right;
   z-index: 2;
   position: relative;
+  padding-top: 10px;
 }
 
 .auth-link {
   display: block;
   font-size: 16px;
   text-align: center;
-  margin-bottom: 33px;
+  margin-bottom: 15px;
 }
 
 .auth-sep {
@@ -88,14 +94,13 @@ a.forgot-pass {
     width: 30%;
     white-space: nowrap;
     padding: 0 24px;
-    color: $text-color;
     & > span {
       margin-top: -12px;
       display: block;
     }
   }
   &:before, &:after {
-    border-top: solid 1px $text-color;
+    border-top: solid 1px $border-light;
     content: "";
     height: 1px;
     width: 35%;
@@ -120,8 +125,4 @@ a.forgot-pass {
       }
     }
   }
-}
-
-.btn-auth {
-  color: #ffffff!important;
 }

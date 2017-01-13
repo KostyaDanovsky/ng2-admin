@@ -3,7 +3,7 @@ import { Http, Headers, Response, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { AuthService } from './auth.service';
-import { DefaultErrorHandler } from './defaultErrorHandler';
+import { DefaultErrorHandler } from '../helpers/defaultErrorHandler';
 
 @Injectable()
 export class AuthorizedHttp {

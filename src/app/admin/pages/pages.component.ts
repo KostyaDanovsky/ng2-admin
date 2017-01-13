@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
-import { PAGES_MENU } from './admin.menu';
+import { PAGES_MENU } from './pages.menu';
 
 @Component({
-  selector: 'admin',
+  selector: 'pages',
   encapsulation: ViewEncapsulation.None,
+  styles: [],
   template: `
     <ba-sidebar [routes]="adminRoutes"></ba-sidebar>
     <ba-page-top isAdminUI="true"></ba-page-top>
@@ -15,10 +16,8 @@ import { PAGES_MENU } from './admin.menu';
         <router-outlet></router-outlet>
       </div>
     </div>
-    `,
+    `
 })
-export class Admin {
-
+export class Pages {
   adminRoutes = PAGES_MENU;
-
 }

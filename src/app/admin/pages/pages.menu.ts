@@ -8,10 +8,9 @@ export const PAGES_MENU = [
           menu: {
             title: 'Dashboard',
             icon: 'ion-android-home',
-            order: 0
           }
-        }
+        },
       },
-    ]
-  }
+    ],
+  },
 ];

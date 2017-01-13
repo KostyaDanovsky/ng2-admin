@@ -1,27 +1,37 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from './environment';
-import { routing } from './app.routing';
+import { ENV_PROVIDERS } from '../environment';
+
+// Routes
+import { AdminRouting } from './admin.routing';
 
 // App is our top level component
-import { App } from './app.component';
-import { AppState, InternalStateType } from './app.service';
-import { GlobalState } from './global.state';
-import { NgaModule } from './theme/nga.module';
-import { PagesModule } from './pages/pages.module';
+import { App } from '../app.component';
+import { ConfigProvider } from '../app.config';
+import { AppState, InternalStateType } from '../app.service';
+import { GlobalState } from '../global.state';
+import { NgaModule } from '../theme/nga.module';
+
+import { Admin } from './admin.component';
+
+// Modules
+import { AuthModule } from '../auth/auth.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  ConfigProvider,
+  GlobalState,
+  { provide: 'environment', useValue: APP_ENV },
 ];
 
 type StoreType = {
@@ -35,27 +45,26 @@ type StoreType = {
  */
 @NgModule({
   bootstrap: [App],
-  declarations: [
-    App
-  ],
   imports: [ // import Angular's modules
     BrowserModule,
-    HttpModule,
-    RouterModule,
     FormsModule,
-    ReactiveFormsModule,
+    RouterModule,
+    HttpModule,
+    NgbModule.forRoot(),
     NgaModule.forRoot(),
-    PagesModule,
-    routing
+    AuthModule.forRoot(),
+    AdminRouting,
+  ],
+  declarations: [
+    App,
+    Admin
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS
   ]
 })
-
-export class AppModule {
-
+export class AdminModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {
   }
 
@@ -69,6 +78,7 @@ export class AppModule {
       let restoreInputValues = store.restoreInputValues;
       setTimeout(restoreInputValues);
     }
+
     this.appRef.tick();
     delete store.state;
     delete store.restoreInputValues;

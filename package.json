@@ -37,6 +37,7 @@
     "ng-bootstrap": "^1.1.16-1",
     "ng2-ckeditor": "1.0.7",
     "ng2-smart-table": "^0.3.2",
+    "ng2-toastr": "^1.3.4",
     "ng2-uploader": "1.1.0",
     "normalize.css": "^4.1.1",
     "postcss-load-config": "1.0.0",

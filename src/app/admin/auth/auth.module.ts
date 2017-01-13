@@ -3,18 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { NgaModule } from '../../../theme/nga.module';
+import { NgaModule } from '../../theme/nga.module';
 
+import { Login } from './login/login.component';
 import { LanguageService } from './language.service';
-import { Login } from './login.component';
-
-const LOGIN_COMPONENTS = [
-  Login,
-];
-
-const LOGIN_SERVICES = [
-  LanguageService
-];
 
 @NgModule({
   imports: [
@@ -25,11 +17,11 @@ const LOGIN_SERVICES = [
     NgaModule,
   ],
   declarations: [
-    LOGIN_COMPONENTS
+    Login
   ],
   providers: [
-    LOGIN_SERVICES
-  ]
+    LanguageService
+  ],
 })
-export class LoginModule {
+export class AdminAuthModule {
 }

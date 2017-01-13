@@ -1,0 +1,11 @@
+@import '../../../../theme/sass/auth';
+
+.gm-login {
+  @mixin linear-gradient($direction, $color-stops...) {
+    background: linear-gradient($direction, $color-stops);
+  }
+
+  .auth-main {
+    background: linear-gradient(hotpink, tomato);
+  }
+}

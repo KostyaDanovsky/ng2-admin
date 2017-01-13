@@ -1,0 +1,4 @@
+<div [ngSwitch]="orgName">
+  <gm-register [orgName]="orgName" *ngSwitchCase="'gm'"></gm-register>
+  <base-register [orgName]="orgName" *ngSwitchDefault></base-register>
+</div>

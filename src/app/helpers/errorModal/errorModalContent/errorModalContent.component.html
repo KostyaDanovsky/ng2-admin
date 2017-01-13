@@ -1,0 +1,26 @@
+<div class="error-handling-modal">
+  <div class="modal-header">
+    <i class="close ion-close-round" (click)="cancel()"></i>
+    <h4 class="modal-title" *ngIf="caption">{{caption}}</h4>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="errorCode" class="error-code">Error code - {{errorCode}}</div>
+    <div class="error-message" [innerHTML]="message"></div>
+    <div *ngIf="details" class="error-details-container" [ngClass]="{'expanded' : !isCollapsed}">
+      <div class="well well-lg" (click)="isCollapsed = !isCollapsed">
+        <h5 class="error-details-container-header">
+          <i class="fa" [ngClass]="{'fa-angle-up': !isCollapsed, 'fa-angle-down': isCollapsed}"></i> Details
+        </h5>
+      </div>
+      <textarea class="error-details hidden" [ngClass]="{'hidden': isCollapsed}" rows="15"
+                readonly>{{details}}</textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="commands-bar">
+      <div class="actions">
+        <input type="submit" value="OK" (click)="cancel()" class="minor-action">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+@import '../../../theme/sass/conf/conf';
+
+.error-handling-modal {
+  .modal-header {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 7.5px 15px;
+    background-color: $danger;
+    color: $default;
+
+    .close {
+      font-size: 16px;
+      opacity: .5;
+      color: $default;
+      padding-top: 5px;
+    }
+
+    .close:hover {
+      opacity: .7;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    .error-details-container {
+      .error-details-container-header {
+        cursor: pointer;
+      }
+
+      .error-details {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid $border-light;
+        overflow: auto;
+        max-height: 1000px;
+        transition: max-height .3s, padding .3s ease;
+      }
+
+      .error-details.hidden {
+        max-height: 0;
+        padding: 0 15px;
+        border-top: none;
+        border-bottom: none;
+        transition: max-height .3s, padding .3s ease;
+      }
+    }
+
+    .error-code, .error-message {
+      margin-bottom: 15px;
+    }
+  }
+
+  .modal-footer {
+    padding: 9.5px 0;
+
+    .commands-bar {
+      margin: auto 15px auto auto;
+
+      .actions {
+        input[type="submit"].minor-action {
+          color: $help-text;
+          padding-right: 10px;
+        }
+
+        input[type="submit"] {
+          padding: 0;
+          font-size: 16px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+<div class="auth-main">
+  <div class="auth-block">
+    <h1>Sign up to {{company}}</h1>
+    <a [routerLink]="['/' + orgName + '/login']" class="auth-link">Already have an {{company}} account? Sign in!</a>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!firstName.valid && firstName.touched), 'has-success': (firstName.valid && firstName.touched)}">
+        <label for="inputName3" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="firstName" type="text" class="form-control" id="inputName3" placeholder="First Name">
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!lastName.valid && lastName.touched), 'has-success': (lastName.valid && lastName.touched)}">
+        <label for="inputName4" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="lastName" type="text" class="form-control" id="inputName4" placeholder="Last Name">
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="password" type="password" class="form-control" id="inputPassword3"
+                 placeholder="Password">
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
+        <label for="inputPassword4" class="col-sm-2 control-label">Repeat</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="repeatPassword" type="password" class="form-control" id="inputPassword4"
+                 placeholder="Repeat">
+          <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)"
+                class="help-block sub-little-text">Passwords don't match.</span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="userLanguage" class="col-sm-2 control-label">Language</label>
+        <div class="col-sm-10 required-control">
+          <div id="userLanguage" class="btn-group dropdown-default" dropdown>
+            <button type="button" class="btn btn-default" dropdownToggle>
+              {{selectedLanguage.name}}
+            </button>
+            <ul class="dropdown-menu" dropdownMenu>
+              <li class="dropdown-item" *ngFor="let language of languages"
+                  (click)="selectedLanguage = language">
+                {{language.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row"
+           [ngClass]="{'has-error': (!key.valid && key.touched), 'has-success': (key.valid && key.touched)}">
+        <label for="inputKey" class="col-sm-2 control-label">Key</label>
+        <div class="col-sm-10 required-control">
+          <input [formControl]="key" type="text" class="form-control" id="inputKey" placeholder="Key">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10 required-control">
+          <label class="checkbox-inline custom-checkbox nowrap">
+            <input [formControl]="policy" type="checkbox" id="inputPolicy">
+            <span>I have read and accept <a target="_blank"
+                                            [routerLink]="['/' + orgName + '/policy']">Privacy Policy</a></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10 required-control">
+          <label class="checkbox-inline custom-checkbox nowrap">
+            <input [formControl]="terms" type="checkbox" id="inputTerms">
+            <span>I have read and accept <a target="_blank"
+                                            [routerLink]="['/' + orgName + '/terms']">Terms & Conditions</a></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10 required-control">
+          <re-captcha #recaptcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="{{ siteKey }}"></re-captcha>
+        </div>
+      </div>
+
+      <div class="error-message" [hidden]="!errorMessage">{{ errorMessage }}</div>
+
+      <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">Sign up</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
